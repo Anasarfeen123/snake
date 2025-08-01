@@ -1,6 +1,5 @@
 import math, random
 import snake as sk
-from queue import PriorityQueue
 
 class Node():
     def __init__(self, parent=None, position=None) -> None:
@@ -20,6 +19,7 @@ class snakeai():
         self.grid = grid
         self.head = self.snake.head
         self.food_pos = self.food.position
+        self.path = []
     
     def get_direction(self, algo= "Astar"):
         self.head = self.snake.head
@@ -35,7 +35,7 @@ class snakeai():
             else:
                 a = self.follow_tail()
         if not a or a == (0, 0):
-            print("🛑 No valid move! Snake may crash.")
+            print("No valid move! Snake may crash.")
         if a == (1,0):
             return "D"
         elif a == (-1,0):
@@ -143,7 +143,7 @@ class snakeai():
                     continue
                 
                 child.g = current_node.g + 1
-                child.h = self.heuristic(child.position, self.food_pos)
+                child.h = self.heuristic(child.position, goal_pos)
 
                 child.f = child.g + child.h
             
@@ -153,4 +153,5 @@ class snakeai():
                 open_list.append(child)
             
         self.path = []
+        print("Error: No A* path found!")
         return []

@@ -1,5 +1,5 @@
-import pygame, time
-import sys, random
+import pygame
+import sys
 import grid as gd
 import snake as sn
 import food as fd
@@ -16,9 +16,10 @@ clock = pygame.time.Clock()
 Running = True
 Autoplay = False
 Speed = 0
-grid = gd.Grid((20,20), screen)
+grid = gd.Grid((10,10), screen)
 snake = sn.Snake(grid,False,(4, 1), Speed)
 food = fd.Food(grid,snake.body)
+assistance = True
 while Running:
     screen.fill((0, 0, 40))
     clock.tick(60)
@@ -44,6 +45,8 @@ while Running:
             if event.key == pygame.K_p:
                 Speed -= 1
                 snake.change_speed(Speed)
+            if event.key == pygame.K_LSHIFT:
+                assistance = not assistance
 
             if not snake.paused:
                 if not Autoplay:
@@ -62,8 +65,8 @@ while Running:
 
     if not snake.paused and not snake.ended:
         SnakeAI = al.snakeai(grid, snake, food)
-        ai_dir = SnakeAI.get_direction()
         if Autoplay:
+            ai_dir = SnakeAI.get_direction()
             snake.chng_dir(ai_dir)
         
         snake.kill(grid)
@@ -73,7 +76,7 @@ while Running:
             food = fd.Food(grid, snake.body)
         else:
             snake.move()
-        if SnakeAI.path:
+        if SnakeAI.path and assistance:
             grid.draw_path(SnakeAI.path)
         snake.draw()
         food.draw()
