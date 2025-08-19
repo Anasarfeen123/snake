@@ -20,7 +20,7 @@ class snakeai():
         self.head = self.snake.head
         self.food_pos = self.food.position
         self.path = []
-    
+
     def get_direction(self, algo= "Astar"):
         self.head = self.snake.head
         if algo == "greedy":

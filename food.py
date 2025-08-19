@@ -8,4 +8,4 @@ class Food():
         self.color = (0, 0, 255)
         self.grid = grid
     def draw(self):
-        self.grid.draw_cell(self.position[0], self.position[1], self.color)
+        self.grid.draw_cell(self.position, self.color)

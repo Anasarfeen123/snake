@@ -20,9 +20,12 @@ grid = gd.Grid((10,10), screen)
 snake = sn.Snake(grid,False,(4, 1), Speed)
 food = fd.Food(grid,snake.body)
 assistance = True
+
 while Running:
+
     screen.fill((0, 0, 40))
     clock.tick(60)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -45,7 +48,7 @@ while Running:
             if event.key == pygame.K_p:
                 Speed -= 1
                 snake.change_speed(Speed)
-            if event.key == pygame.K_LSHIFT:
+            if event.key == pygame.K_v:
                 assistance = not assistance
 
             if not snake.paused:
@@ -58,6 +61,7 @@ while Running:
                         snake.chng_dir("W")
                     elif event.key == pygame.K_DOWN:
                         snake.chng_dir("S")
+
     if snake.paused and not snake.ended:
         font = pygame.font.SysFont(None, 50)
         text = font.render('Paused', True, (255, 255, 255))
@@ -76,8 +80,9 @@ while Running:
             food = fd.Food(grid, snake.body)
         else:
             snake.move()
-        if SnakeAI.path and assistance:
+        if SnakeAI.path or assistance:
             grid.draw_path(SnakeAI.path)
+
         snake.draw()
         food.draw()
         grid.draw_grid()
@@ -88,3 +93,5 @@ while Running:
         screen.blit(text, (10, 10))
 
         pygame.display.flip()
+        
+        #TODO: 1. Survival mode- Make a heatmap so as to be as far away from the body as possible 

@@ -17,9 +17,9 @@ class Snake():
         self.speed = speed
         
     def draw(self):
-        self.grid.draw_cell(self.head[0], self.head[1], self.head_color, 8)
+        self.grid.draw_cell(self.head, self.head_color, 8)
         for segment in self.body[1:]:
-            self.grid.draw_cell(segment[0], segment[1], self.color, 8)
+            self.grid.draw_cell(segment, self.color, 8)
 
     def move(self, grow = False):
         dx, dy = self.direc
