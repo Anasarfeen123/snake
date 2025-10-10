@@ -64,6 +64,9 @@ A classic Snake game built using **Python** and **Pygame**, featuring an **AI bo
 
 ## 🖼️ Screenshots
 *(Add screenshots or GIFs of gameplay here!)*
+![alt text](img_1.png)
+![alt text](img_2.png)
+![alt text](img_3.png)
 
 ---
 
