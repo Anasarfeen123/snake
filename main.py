@@ -37,6 +37,7 @@ while Running:
                 sys.exit()
             if event.key == pygame.K_r:
                 snake = sn.Snake(grid)
+                snake.change_speed(Speed)
                 food = fd.Food(grid, snake.body)
             if event.key == pygame.K_a:
                 snake.paused = not snake.paused
